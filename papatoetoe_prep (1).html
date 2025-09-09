@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Papatoetoe High School First Day Preparation Guide">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Papatoetoe High School - First Day Preparation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .progress-bar {
+            background: white;
+            border-radius: 25px;
+            padding: 10px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+            height: 20px;
+            border-radius: 15px;
+            transition: width 0.5s ease;
+            width: 0%;
+            position: relative;
+        }
+        
+        .progress-text {
+            text-align: center;
+            margin-top: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .section {
+            background: white;
+            margin: 20px 0;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section h2 {
+            color: #4a5568;
+            font-size: 2em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section h2::before {
+            content: '';
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .activity-box {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #fdcb6e;
+        }
+        
+        .activity-box h3 {
+            color: #2d3436;
+            margin-bottom: 10px;
+        }
+        
+        .input-group {
+            margin: 15px 0;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #4a5568;
+        }
+        
+        .input-group input, .input-group textarea, .input-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .input-group input:focus, .input-group textarea:focus, .input-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin: 10px 5px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .tip-box {
+            background: linear-gradient(135deg, #a8e6cf 0%, #7fcdcd 100%);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #00b894;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, #fab1a0 0%, #fd79a8 100%);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #e17055;
+            color: white;
+        }
+        
+        .navigation {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .section-nav {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 8px 15px;
+            background: #e2e8f0;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .section-nav.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .section-nav.completed {
+            background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+            color: white;
+        }
+        
+        .checklist {
+            list-style: none;
+        }
+        
+        .checklist li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .checklist li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #00b894;
+            font-weight: bold;
+        }
+        
+        .goal-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            transition: border-color 0.3s;
+        }
+        
+        .goal-card:hover {
+            border-color: #667eea;
+        }
+        
+        .completion-summary {
+            background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            display: none;
+        }
+        
+        .completion-summary.show {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .section h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏫 Welcome to Papatoetoe High School!</h1>
+            <p>Your Complete First Day Preparation Guide</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+                <div class="progress-text" id="progressText">0% Complete</div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <div class="section-nav active" onclick="showSection(0)">Start Here</div>
+            <div class="section-nav" onclick="showSection(1)">Success Prep</div>
+            <div class="section-nav" onclick="showSection(2)">Time & Attendance</div>
+            <div class="section-nav" onclick="showSection(3)">2025 Review</div>
+            <div class="section-nav" onclick="showSection(4)">Goal Setting</div>
+            <div class="section-nav" onclick="showSection(5)">Study Skills</div>
+            <div class="section-nav" onclick="showSection(6)">AI & Ethics</div>
+            <div class="section-nav" onclick="showSection(7)">Complete</div>
+        </div>
+
+        <!-- Section 0: Welcome -->
+        <div class="section active">
+            <h2>🚀 Let's Get Started!</h2>
+            <p>Welcome to your preparation journey for Papatoetoe High School! This interactive guide will help you get ready for your first day and set yourself up for success throughout the year.</p>
+            
+            <div class="activity-box">
+                <h3>📝 Let's get to know you first</h3>
+                <div class="input-group">
+                    <label for="studentName">What's your name?</label>
+                    <input type="text" id="studentName" placeholder="Enter your full name">
+                </div>
+                <div class="input-group">
+                    <label for="yearLevel">What year level will you be in 2025?</label>
+                    <select id="yearLevel">
+                        <option value="">Select your year level</option>
+                        <option value="9">Year 9</option>
+                        <option value="10">Year 10</option>
+                        <option value="11">Year 11</option>
+                        <option value="12">Year 12</option>
+                        <option value="13">Year 13</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="excitement">How are you feeling about starting at Papatoetoe High?</label>
+                    <select id="excitement">
+                        <option value="">How are you feeling?</option>
+                        <option value="excited">Really excited! 🎉</option>
+                        <option value="nervous">A bit nervous 😅</option>
+                        <option value="mixed">Mixed feelings 🤔</option>
+                        <option value="confident">Confident and ready 💪</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <h3>💡 What you'll accomplish today:</h3>
+                <ul class="checklist">
+                    <li>Learn how to prepare for success</li>
+                    <li>Understand the importance of attendance and punctuality</li>
+                    <li>Review your 2025 progress</li>
+                    <li>Set meaningful goals for your education</li>
+                    <li>Master essential study techniques</li>
+                    <li>Learn to use AI ethically and effectively</li>
+                </ul>
+            </div>
+
+            <div class="navigation">
+                <button class="btn" onclick="nextSection()">Let's Begin! 🚀</button>
+            </div>
+        </div>
+
+        <!-- Section 1: Preparation for Success -->
+        <div class="section">
+            <h2>🎯 Preparation for Success</h2>
+            <p>Success at high school doesn't happen by accident - it's the result of good preparation and smart habits. Let's explore what it means to be truly prepared for success.</p>
+
+            <div class="activity-box">
+                <h3>🧠 Reflection: What does success mean to you?</h3>
+                <div class="input-group">
+                    <label for="successDefinition">In your own words, what does academic success look like?</label>
+                    <textarea id="successDefinition" rows="4" placeholder="Think about grades, learning, personal growth, friendships, skills..."></textarea>
+                </div>
+            </div>
+
+            <h3>🔑 The Keys to Success</h3>
+            <div class="goal-card">
+                <h4>1. Organization & Planning</h4>
+                <p>Successful students use planners, organize their materials, and plan ahead for assignments and tests.</p>
+            </div>
+            <div class="goal-card">
+                <h4>2. Active Participation</h4>
+                <p>Engage in class discussions, ask questions, and participate in school activities.</p>
+            </div>
+            <div class="goal-card">
+                <h4>3. Growth Mindset</h4>
+                <p>View challenges as opportunities to learn and grow, not as obstacles.</p>
+            </div>
+            <div class="goal-card">
+                <h4>4. Building Relationships</h4>
+                <p>Connect with teachers, make friends, and build a support network.</p>
+            </div>
+
+            <div class="activity-box">
+                <h3>📋 Success Action Plan</h3>
+                <div class="input-group">
+                    <label for="organizationPlan">How will you stay organized this year? (tools, apps, systems)</label>
+                    <textarea id="organizationPlan" rows="3" placeholder="Describe your organization system..."></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="participationPlan">How will you actively participate in your learning?</label>
+                    <textarea id="participationPlan" rows="3" placeholder="Think about class participation, asking questions, joining clubs..."></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="challengePlan">How will you handle challenges and setbacks?</label>
+                    <textarea id="challengePlan" rows="3" placeholder="What strategies will you use when things get tough?"></textarea>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button class="btn" onclick="prevSection()">← Previous</button>
+                <button class="btn" onclick="nextSection()">Next →</button>
+            </div>
+        </div>
+
+        <!-- Section 2: Being on Time and Attending Regularly -->
+        <div class="section">
+            <h2>⏰ Time & Attendance Excellence</h2>
+            <p>Being on time and attending regularly are fundamental to your success. Let's explore why these matter and how to master them.</p>
+
+            <div class="warning-box">
+                <h3>⚠️ Did You Know?</h3>
+                <p>Students who miss just 10% of school (about 2 days per month) are considered chronically absent and are significantly more likely to struggle academically.</p>
+            </div>
+
+            <h3>🎯 Why Attendance & Punctuality Matter</h3>
+            <ul style="margin: 20px 0; padding-left: 20px;">
+                <li><strong>Learning is Sequential:</strong> Each lesson builds on the previous one</li>
+                <li><strong>Class Participation:</strong> You can't participate if you're not there</li>
+                <li><strong>Relationships:</strong> Being present helps you build connections with teachers and peers</li>
+                <li><strong>Habits for Life:</strong> These skills are essential in the workplace</li>
+                <li><strong>Academic Achievement:</strong> Regular attendance is strongly linked to better grades</li>
+            </ul>
+
+            <div class="activity-box">
+                <h3>🕐 Time Management Assessment</h3>
+                <div class="input-group">
+                    <label for="morningRoutine">Describe your current morning routine. How long does it take?</label>
+                    <textarea id="morningRoutine" rows="3" placeholder="What time do you wake up? What do you do to get ready?"></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="travelTime">How do you get to school and how long does it take?</label>
+                    <input type="text" id="travelTime" placeholder="e.g., Bus - 25 minutes, Walk - 15 minutes">
+                </div>
+                <div class="input-group">
+                    <label for="schoolStart">What time do classes start at Papatoetoe High?</label>
+                    <input type="time" id="schoolStart" value="08:45">
+                </div>
+            </div>
+
+            <div class="activity-box">
+                <h3>📅 Your Attendance Plan</h3>
+                <div class="input-group">
+                    <label for="wakeUpTime">What time should you wake up to arrive 10 minutes early?</label>
+                    <input type="time" id="wakeUpTime" placeholder="Calculate backwards from school start time">
+                </div>
+                <div class="input-group">
+                    <label for="attendanceGoal">What's your attendance goal for this year? (aim for 95%+)</label>
+                    <select id="attendanceGoal">
+                        <option value="">Select your goal</option>
+                        <option value="100">100% - Perfect Attendance</option>
+                        <option value="98">98% - Excellent</option>
+                        <option value="95">95% - Very Good</option>
+                        <option value="90">90% - Good</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="attendanceStrategy">What strategies will you use to maintain good attendance?</label>
+                    <textarea id="attendanceStrategy" rows="3" placeholder="Think about backup alarms, preparation the night before, backup transport..."></textarea>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <h3>💡 Pro Tips for Perfect Attendance</h3>
+                <ul>
+                    <li>Prepare everything the night before (clothes, bag, lunch)</li>
+                    <li>Set multiple alarms</li>
+                    <li>Have a backup plan for transport</li>
+                    <li>Get enough sleep (8-9 hours for teenagers)</li>
+                    <li>Keep track of your attendance record</li>
+                </ul>
+            </div>
+
+            <div class="navigation">
+                <button class="btn" onclick="prevSection()">← Previous</button>
+                <button class="btn" onclick="nextSection()">Next →</button>
+            </div>
+        </div>
+
+        <!-- Section 3: Reviewing 2025 -->
+        <div class="section">
+            <h2>📊 Reviewing Your 2025 Journey</h2>
+            <p>Before we plan for the future, let's reflect on your experiences and achievements so far in 2025. Understanding where you've been helps you decide where you're going.</p>
+
+            <div class="activity-box">
+                <h3>📈 Academic Review</h3>
+                <div class="input-group">
+                    <label for="bestSubjects">Which subjects have been your strongest this year?</label>
+                    <input type="text" id="bestSubjects" placeholder="e.g., English, Mathematics, Science...">
+                </div>
+                <div class="input-group">
+                    <label for="challengingSubjects">Which subjects have been most challenging?</label>
+                    <input type="text" id="challengingSubjects" placeholder="e.g., Mathematics, Science, Languages...">
+                </div>
+                <div class="input-group">
+                    <label for="proudestAchievement">What's your proudest achievement from 2025 so far?</label>
+                    <textarea id="proudestAchievement" rows="3" placeholder="Academic, personal, social, sporting - any achievement you're proud of..."></textarea>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <h3>🔍 Accessing Your Student Portal</h3>
+                <p>If you can access your 2025 reports through the student portal, take some time to review them. Look for:</p>
+                <ul>
+                    <li>Grade trends - are you improving, maintaining, or declining?</li>
+                    <li>Teacher comments - what patterns do you notice?</li>
+                    <li>Areas for improvement that teachers have identified</li>
+                    <li>Your strengths that are consistently mentioned</li>
+                </ul>
+            </div>
+
+            <div class="activity-box">
+                <h3>🎯 Skills & Habits Reflection</h3>
+                <div class="input-group">
+                    <label for="studyHabits">How would you rate your current study habits?</label>
+                    <select id="studyHabits">
+                        <option value="">Select rating</option>
+                        <option value="excellent">Excellent - I have strong, consistent study routines</option>
+                        <option value="good">Good - I study regularly but could improve</option>
+                        <option value="fair">Fair - I study sometimes but inconsistently</option>
+                        <option value="poor">Poor - I struggle to maintain study habits</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="timeManagement">How well do you manage your time?</label>
+                    <select id="timeManagement">
+                        <option value="">Select rating</option>
+                        <option value="excellent">Excellent - I'm always organized and on time</option>
+                        <option value="good">Good - Usually organized with occasional lapses</option>
+                        <option value="fair">Fair - Sometimes struggle with organization</option>
+                        <option value="poor">Poor - Often disorganized or late</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="lessonLearned">What's the most important lesson you've learned about yourself as a student in 2025?</label>
+                    <textarea id="lessonLearned" rows="4" placeholder="Think about your learning style, motivation, challenges, strengths..."></textarea>
+                </div>
+            </div>
+
+            <div class="activity-box">
+                <h3>🔄 Growth Areas</h3>
+                <div class="input-group">
+                    <label for="skillsToImprove">Based on your 2025 experience, what skills do you most want to improve?</label>
+                    <textarea id="skillsToImprove" rows="3" placeholder="e.g., note-taking, time management, asking for help, test preparation..."></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="habitsToChange">What habits would you like to change or develop?</label>
+                    <textarea id="habitsToChange" rows="3" placeholder="Think about study habits, social habits, technology use..."></textarea>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button class="btn" onclick="prevSection()">← Previous</button>
+                <button class="btn" onclick="nextSection()">Next →</button>
+            </div>
+        </div>
+
+        <!-- Section 4: Goal Setting -->
+        <div class="section">
+            <h2>🎯 Setting Your Goals</h2>
+            <p>Goal setting is one of the most powerful tools for academic success. Let's set some SMART goals that will guide your journey at Papatoetoe High School.</p>
+
+            <div class="tip-box">
+                <h3>🧠 SMART Goals Framework</h3>
+                <ul>
+                    <li><strong>Specific:</strong> Clear and well-defined</li>
+                    <li><strong>Measurable:</strong> You can track progress</li>
+                    <li><strong>Achievable:</strong> Realistic and attainable</li>
+                    <li><strong>Relevant:</strong> Important to your success</li>
+                    <li><strong>Time-bound:</strong> Has a deadline</li>
+                </ul>
+            </div>
+
+            <div class="activity-box">
+                <h3>📚 Academic Goals</h3>
+                <div class="input-group">
+                    <label for="literacyGoal">Literacy Goal - What level do you want to achieve?</label>
+                    <select id="literacyGoal">
+                        <option value="">Select your literacy goal</option>
+                        <option value="maintain">Maintain current level</option>
+                        <option value="level1">Achieve Level 1 Literacy</option>
+                        <option value="level2">Achieve Level 2 Literacy</option>
+                        <option value="level3">Achieve Level 3 Literacy</option>
+                        <option value="university">University Entrance Literacy</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="numeracyGoal">Numeracy Goal - What level do you want to achieve?</label>
+                    <select id="numeracyGoal">
+                        <option value="">Select your numeracy goal</option>
+                        <option value="maintain">Maintain current level</option>
+                        <option value="level1">Achieve Level 1 Numeracy</option>
+                        <option value="level2">Achieve Level 2 Numeracy</option>
+                        <option value="level3">Achieve Level 3 Numeracy</option>
+                        <option value="university">University Entrance Numeracy</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="nceaGoal">NCEA Level Goal - What do you want to achieve?</label>
+                    <select id="nceaGoal">
+                        <option value="">Select your NCEA goal</option>
+                        <option value="level1">Complete NCEA Level 1</option>
+                        <option value="level1merit">NCEA Level 1 with Merit</option>
+                        <option value="level1excellence">NCEA Level 1 with Excellence</option>
+                        <option value="level2">Complete NCEA Level 2</option>
+                        <option value="level2merit">NCEA Level 2 with Merit</option>
+                        <option value="level2excellence">NCEA Level 2 with Excellence</option>
+                        <option value="level3">Complete NCEA Level 3</option>
+                        <option value="level3merit">NCEA Level 3 with Merit</option>
+                        <option value="level3excellence">NCEA Level 3 with Excellence</option>
+                        <option value="university">University Entrance</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="activity-box">
+                <h3>🌟 Personal Development Goals</h3>
+                <div class="input-group">
+                    <label for="personalGoal1">Personal Goal 1: What skill or habit do you want to develop?</label>
+                    <input type="text" id="personalGoal1" placeholder="e.g., Improve public speaking, learn a new language, develop leadership skills">
+                </div>
+                <div class="input-group">
+                    <label for="personalGoal1Plan">How will you work towards this goal?</label>
+                    <textarea id="personalGoal1Plan" rows="2" placeholder="Specific steps you'll take..."></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="personalGoal2">Personal Goal 2: What would you like to achieve socially or in extracurricular activities?</label>
+                    <input type="text" id="personalGoal2" placeholder="e.g., Join a sports team, make new friends, join drama club">
+                </div>
+                <div class="input-group">
+                    <label for="personalGoal2Plan">How will you work towards this goal?</label>
+                    <textarea id="personalGoal2Plan" rows="2" placeholder="Specific steps you'll take..."></textarea>
+                </div>
+            </div>
+
+            <div class="activity-box">
+                <h3>📅 Timeline and Accountability</h3>
+                <div class="input-group">
+                    <label for="midYearCheck">What will you review at mid-year to check your progress?</label>
+                    <textarea id="midYearCheck" rows="3" placeholder="How will you measure if you're on track with your goals?"></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="supportPerson">Who will support you in achieving these goals? (teacher, parent, friend)</label>
+                    <input type="text" id="supportPerson" placeholder="Name someone who can help keep you accountable">
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button class="btn" onclick="prevSection()">← Previous</button>
+                <button class="btn" onclick="nextSection()">Next →</button>
+            </div>
+        </div>
+
+        <!-- Section 5: Study Skills -->
+        <div class="section">
+            <h2>📖 Study Skills & Note-Taking Mastery</h2>
+            <p>Effective study skills and note-taking are essential for academic success. Let's explore proven techniques that will help you learn more effectively.</p>
+
+            <h3>✍️ Note-Taking Methods</h3>
+            
+            <div class="goal-card">
+                <h4>📝 Cornell Note-Taking System</h4>
+                <p><strong>Best for:</strong> Lectures and textbook reading</p>
+                <ul>
+                    <li>Divide your page: narrow left column, wide right column, bottom summary</li>
+                    <li>Take notes in the right column during class</li>
+                    <li>Add key words/questions in the left column after class</li>
+                    <li>Summarize main points at the bottom</li>
+                </ul>
+            </div>
+
+            <div class="goal-card">
+                <h4>🗺️ Mind Mapping</h4>
+                <p><strong>Best for:</strong> Visual learners and connecting ideas</p>
+                <ul>
+                    <li>Start with main topic in the center</li>
+                    <li>Branch out with related subtopics</li>
+                    <li>Use colors, symbols, and images</li>
+                    <li>Great for brainstorming and revision</li>
+                </ul>
+            </div>
+
+            <div class="goal-card">
+                <h4>📋 Outline Method</h4>
+                <p><strong>Best for:</strong> Structured information and organized thinking</p>
+                <ul>
+                    <li>Use main headings and subheadings</li>
+                    <li>Indent supporting details</li>
+                    <li>Number or bullet point system</li>
+                    <li>Shows hierarchy of information clearly</li>
+                </ul>
+            </div>
+
+            <div class="activity-box">
+                <h3>📚 Your Note-Taking Strategy</h3>
+                <div class="input-group">
+                    <label for="noteMethod">Which note-taking method appeals to you most?</label>
+                    <select id="noteMethod">
+                        <option value="">Choose your preferred method</option>
+                        <option value="cornell">Cornell System</option>
+                        <option value="mindmap">Mind Mapping</option>
+                        <option value="outline">Outline Method</option>
+                        <option value="combination">Combination of methods</option>
+                        <option value="digital">Digital notes (tablet/laptop)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="noteTools">What tools will you use for note-taking?</label>
+                    <input type="text" id="noteTools" placeholder="e.g., pen and paper, iPad, laptop, colored pens...">
+                </div>
+                <div class="input-group">
+                    <label for="noteOrganization">How will you organize your notes for different subjects?</label>
+                    <textarea id="noteOrganization" rows="3" placeholder="Describe your system for keeping notes organized..."></textarea>
+                </div>
+            </div>
+
+            <h3>🧠 Effective Study Techniques</h3>
+
+            <div class="goal-card">
+                <h4>🔄 Spaced Repetition</h4>
+                <p>Review information at increasing intervals. Study something today, review it tomorrow, then in 3 days, then a week later.</p>
+            </div>
+
+            <div class="goal-card">
+                <h4>🧪 Active Recall</h4>
+                <p>Test yourself without looking at notes. Close your book and try to remember key concepts. Much more effective than just re-reading.</p>
+            </div>
+
+            <div class="goal-card">
+                <h4>🏃‍♂️ Pomodoro Technique</h4>
+                <p>Study for 25 minutes, then take a 5-minute break. After 4 cycles, take a longer 15-30 minute break.</p>
+            </div>
+
+            <div class="goal-card">
+                <h4>👥 Teaching Others</h4>
+                <p>Explain concepts to friends, family, or even to yourself out loud. If you can teach it, you understand it.</p>
+            </div>
+
+            <div class="activity-box">
+                <h3>⏰ Your Study Schedule</h3>
+                <div class="input-group">
+                    <label for="studyTime">What time of day do you focus best?</label>
+                    <select id="studyTime">
+                        <option value="">When do you learn best?</option>
+                        <option value="morning">Early morning (6-9 AM)</option>
+                        <option value="midmorning">Mid-morning (9-12 PM)</option>
+                        <option value="afternoon">Afternoon (1-4 PM)</option>
+                        <option value="evening">Evening (4-7 PM)</option>
+                        <option value="night">Night (7-10 PM)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="studyEnvironment">Describe your ideal study environment</label>
+                    <textarea id="studyEnvironment" rows="3" placeholder="Quiet? Music? At desk? Where do you concentrate best?"></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="weeklyStudyPlan">How many hours per week will you dedicate to homework and study?</label>
+                    <select id="weeklyStudyPlan">
+                        <option value="">Select study hours per week</option>
+                        <option value="5-7">5-7 hours (about 1 hour per day)</option>
+                        <option value="8-10">8-10 hours (1-2 hours per day)</option>
+                        <option value="11-14">11-14 hours (2 hours per day)</option>
+                        <option value="15+">15+ hours (2+ hours per day)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <h3>💡 Study Success Tips</h3>
+                <ul>
+                    <li><strong>Start assignments early</strong> - avoid last-minute stress</li>
+                    <li><strong>Break large tasks into smaller chunks</strong> - makes them less overwhelming</li>
+                    <li><strong>Use a planner</strong> - write down all assignments and due dates</li>
+                    <li><strong>Find a study buddy</strong> - accountability and support</li>
+                    <li><strong>Take care of yourself</strong> - sleep, exercise, and eat well</li>
+                    <li><strong>Ask for help when needed</strong> - teachers want you to succeed</li>
+                </ul>
+            </div>
+
+            <div class="navigation">
+                <button class="btn" onclick="prevSection()">← Previous</button>
+                <button class="btn" onclick="nextSection()">Next →</button>
+            </div>
+        </div>
+
+        <!-- Section 6: Using AI Ethically and Effectively -->
+        <div class="section">
+            <h2>🤖 Using AI Ethically and Effectively</h2>
+            <p>Artificial Intelligence is a powerful tool that can enhance your learning, but it must be used responsibly and ethically. Let's explore how to make AI your learning ally while maintaining academic integrity.</p>
+
+            <div class="warning-box">
+                <h3>⚠️ Important: Academic Integrity First</h3>
+                <p>Using AI to complete assignments for you is academic dishonesty. AI should support your learning process, not replace your thinking and effort.</p>
+            </div>
+
+            <h3>✅ Ethical Uses of AI in Learning</h3>
+
+            <div class="goal-card">
+                <h4>🧠 Brainstorming and Idea Generation</h4>
+                <p>Use AI to help generate ideas for essays, projects, or creative work. Then develop these ideas with your own research and thinking.</p>
+                <strong>Example:</strong> "Help me brainstorm themes for my English essay on Romeo and Juliet"
+            </div>
+
+            <div class="goal-card">
+                <h4>📚 Explaining Complex Concepts</h4>
+                <p>Ask AI to explain difficult topics in simpler terms or provide different perspectives on concepts you're studying.</p>
+                <strong>Example:</strong> "Can you explain photosynthesis in simple terms?" or "What's another way to think about algebra?"
+            </div>
+
+            <div class="goal-card">
+                <h4>🔍 Research Starting Points</h4>
+                <p>Use AI to identify potential sources, keywords, or areas to explore, but always verify information with credible sources.</p>
+                <strong>Example:</strong> "What are some key topics I should research about climate change?"
+            </div>
+
+            <div class="goal-card">
+                <h4>✏️ Writing Support</h4>
+                <p>Get help with grammar, structure suggestions, or feedback on your writing - but the ideas and content should be yours.</p>
+                <strong>Example:</strong> "Can you help me improve the structure of this paragraph I wrote?"
+            </div>
+
+            <div class="goal-card">
+                <h4>🧪 Practice and Study Aid</h4>
+                <p>Create practice questions, flashcards, or quiz yourself on topics you're learning.</p>
+                <strong>Example:</strong> "Generate 5 practice math problems about quadratic equations"
+            </div>
+
+            <h3>❌ Unethical Uses of AI (Never Do These)</h3>
+
+            <div class="warning-box">
+                <ul>
+                    <li><strong>Having AI write your assignments</strong> - This is plagiarism</li>
+                    <li><strong>Copying AI responses without attribution</strong> - Always cite AI use when required</li>
+                    <li><strong>Using AI during tests or exams</strong> - Unless explicitly allowed</li>
+                    <li><strong>Submitting AI-generated work as your own</strong> - This violates academic integrity</li>
+                    <li><strong>Using AI to avoid learning</strong> - The goal is to enhance, not replace learning</li>
+                </ul>
+            </div>
+
+            <div class="activity-box">
+                <h3>🎯 Your AI Ethics Agreement</h3>
+                <div class="input-group">
+                    <label for="aiUsePolicy">Have you read your school's policy on AI use? What are the key points?</label>
+                    <textarea id="aiUsePolicy" rows="3" placeholder="Summarize what your school allows and doesn't allow regarding AI use..."></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="aiLearningGoals">How do you plan to use AI to enhance your learning this year?</label>
+                    <textarea id="aiLearningGoals" rows="4" placeholder="Describe specific ways you'll use AI ethically to support your studies..."></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="aiIntegrityPledge">Write your personal commitment to using AI ethically</label>
+                    <textarea id="aiIntegrityPledge" rows="3" placeholder="I commit to using AI ethically by..."></textarea>
+                </div>
+            </div>
+
+            <h3>🛠️ Practical AI Tools for Students</h3>
+
+            <div class="tip-box">
+                <h3>Recommended AI Tools (Use Responsibly)</h3>
+                <ul>
+                    <li><strong>ChatGPT/Claude:</strong> For explanations, brainstorming, and learning support</li>
+                    <li><strong>Grammarly:</strong> For grammar and writing improvement</li>
+                    <li><strong>Khan Academy:</strong> AI-powered personalized learning</li>
+                    <li><strong>Quizlet:</strong> AI-generated flashcards and study materials</li>
+                    <li><strong>Microsoft Copilot:</strong> Integrated into Office applications</li>
+                </ul>
+            </div>
+
+            <div class="activity-box">
+                <h3>📋 AI Learning Action Plan</h3>
+                <div class="input-group">
+                    <label for="aiToolChoice">Which AI tool(s) will you explore first?</label>
+                    <input type="text" id="aiToolChoice" placeholder="Choose 1-2 tools to start with">
+                </div>
+                <div class="input-group">
+                    <label for="aiLearningSubject">Which subject could benefit most from AI-assisted learning for you?</label>
+                    <input type="text" id="aiLearningSubject" placeholder="Which subject will you try AI assistance with first?">
+                </div>
+                <div class="input-group">
+                    <label for="aiSafetyPlan">How will you verify information you get from AI?</label>
+                    <textarea id="aiSafetyPlan" rows="3" placeholder="What steps will you take to check AI-provided information?"></textarea>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button class="btn" onclick="prevSection()">← Previous</button>
+                <button class="btn" onclick="nextSection()">Complete Your Journey! →</button>
+            </div>
+        </div>
+
+        <!-- Section 7: Completion -->
+        <div class="section">
+            <div class="completion-summary show">
+                <h2>🎉 Congratulations!</h2>
+                <p>You've completed your preparation for success at Papatoetoe High School!</p>
+                
+                <div style="text-align: left; margin: 20px 0;">
+                    <h3>📋 Your Preparation Summary:</h3>
+                    <ul class="checklist">
+                        <li>Defined what success means to you</li>
+                        <li>Created your attendance and punctuality plan</li>
+                        <li>Reflected on your 2025 journey and growth</li>
+                        <li>Set SMART goals for your education</li>
+                        <li>Chosen your study methods and note-taking style</li>
+                        <li>Committed to ethical AI use</li>
+                    </ul>
+                </div>
+
+                <div class="activity-box">
+                    <h3>🚀 Final Reflection</h3>
+                    <div class="input-group">
+                        <label for="finalConfidence">How confident do you feel about starting at Papatoetoe High School now?</label>
+                        <select id="finalConfidence">
+                            <option value="">How confident are you feeling?</option>
+                            <option value="very">Very confident - I'm ready! 💪</option>
+                            <option value="confident">Confident - I feel prepared 😊</option>
+                            <option value="somewhat">Somewhat confident - getting there 🙂</option>
+                            <option value="nervous">Still a bit nervous 😅</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="finalThoughts">What's one thing you're most excited about for your time at Papatoetoe High?</label>
+                        <textarea id="finalThoughts" rows="3" placeholder="Share what you're looking forward to most..."></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label for="nextSteps">What will you do in the next week to prepare for your first day?</label>
+                        <textarea id="nextSteps" rows="3" placeholder="List specific actions you'll take..."></textarea>
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <h3>🎯 Remember: Success is a Journey</h3>
+                    <p>Starting high school is just the beginning. Use the tools and strategies you've learned today throughout your time at Papatoetoe High School. Remember:</p>
+                    <ul>
+                        <li>It's okay to ask for help</li>
+                        <li>Mistakes are learning opportunities</li>
+                        <li>Your teachers want you to succeed</li>
+                        <li>Building relationships takes time</li>
+                        <li>You've got this! 🌟</li>
+                    </ul>
+                </div>
+
+                <div style="margin: 30px 0;">
+                    <button class="btn" onclick="generateSummary()" style="font-size: 18px; padding: 15px 40px;">
+                        📄 Generate My Preparation Summary
+                    </button>
+                </div>
+
+                <div id="summaryDisplay" style="display: none; background: white; padding: 20px; border-radius: 10px; margin: 20px 0; color: #333;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSection = 0;
+        const totalSections = 8;
+        let sectionData = {};
+
+        function showSection(index) {
+            // Save current section data
+            if (currentSection < totalSections - 1) {
+                saveCurrentSectionData();
+            }
+
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
+
+            // Show target section
+            sections[index].classList.add('active');
+
+            // Update navigation
+            const navItems = document.querySelectorAll('.section-nav');
+            navItems.forEach((nav, i) => {
+                nav.classList.remove('active');
+                if (i < index) {
+                    nav.classList.add('completed');
+                } else {
+                    nav.classList.remove('completed');
+                }
+            });
+            navItems[index].classList.add('active');
+
+            currentSection = index;
+            updateProgress();
+        }
+
+        function nextSection() {
+            if (currentSection < totalSections - 1) {
+                showSection(currentSection + 1);
+            }
+        }
+
+        function prevSection() {
+            if (currentSection > 0) {
+                showSection(currentSection - 1);
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentSection) / (totalSections - 1)) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = Math.round(progress) + '% Complete';
+        }
+
+        function saveCurrentSectionData() {
+            const section = document.querySelectorAll('.section')[currentSection];
+            const inputs = section.querySelectorAll('input, textarea, select');
+            
+            inputs.forEach(input => {
+                if (input.id) {
+                    sectionData[input.id] = input.value;
+                }
+            });
+        }
+
+        function generateSummary() {
+            // Save final section data
+            saveCurrentSectionData();
+
+            const summary = `
+                <h3>🎓 ${sectionData.studentName || 'Student'}'s Preparation Summary</h3>
+                <p><strong>Year Level:</strong> Year ${sectionData.yearLevel || 'Not specified'}</p>
+                <p><strong>Initial Feeling:</strong> ${sectionData.excitement || 'Not specified'}</p>
+                
+                <h4>📈 Success Plan</h4>
+                <p><strong>Definition of Success:</strong> ${sectionData.successDefinition || 'Not specified'}</p>
+                <p><strong>Organization Strategy:</strong> ${sectionData.organizationPlan || 'Not specified'}</p>
+                
+                <h4>⏰ Attendance & Time Management</h4>
+                <p><strong>Attendance Goal:</strong> ${sectionData.attendanceGoal || 'Not specified'}%</p>
+                <p><strong>Wake Up Time:</strong> ${sectionData.wakeUpTime || 'Not specified'}</p>
+                <p><strong>Travel Method:</strong> ${sectionData.travelTime || 'Not specified'}</p>
+                
+                <h4>🎯 Academic Goals</h4>
+                <p><strong>Literacy Goal:</strong> ${sectionData.literacyGoal || 'Not specified'}</p>
+                <p><strong>Numeracy Goal:</strong> ${sectionData.numeracyGoal || 'Not specified'}</p>
+                <p><strong>NCEA Goal:</strong> ${sectionData.nceaGoal || 'Not specified'}</p>
+                
+                <h4>📚 Study Approach</h4>
+                <p><strong>Preferred Note-taking Method:</strong> ${sectionData.noteMethod || 'Not specified'}</p>
+                <p><strong>Best Study Time:</strong> ${sectionData.studyTime || 'Not specified'}</p>
+                <p><strong>Weekly Study Hours:</strong> ${sectionData.weeklyStudyPlan || 'Not specified'}</p>
+                
+                <h4>🤖 AI Use Commitment</h4>
+                <p><strong>AI Learning Goals:</strong> ${sectionData.aiLearningGoals || 'Not specified'}</p>
+                <p><strong>Integrity Pledge:</strong> ${sectionData.aiIntegrityPledge || 'Not specified'}</p>
+                
+                <h4>🎉 Final Thoughts</h4>
+                <p><strong>Confidence Level:</strong> ${sectionData.finalConfidence || 'Not specified'}</p>
+                <p><strong>Most Excited About:</strong> ${sectionData.finalThoughts || 'Not specified'}</p>
+                <p><strong>Next Week's Actions:</strong> ${sectionData.nextSteps || 'Not specified'}</p>
+                
+                <hr style="margin: 20px 0;">
+                <p><em>Completed on: ${new Date().toLocaleDateString()}</em></p>
+                <p><em>Ready for success at Papatoetoe High School! 🚀</em></p>
+            `;
+
+            document.getElementById('summaryDisplay').innerHTML = summary;
+            document.getElementById('summaryDisplay').style.display = 'block';
+
+            // Create download buttons for the summary
+            createDownloadOptions();
+            
+            // Also create a data export for Google Sheets if needed
+            createDataExport();
+        }
+
+        function createDownloadOptions() {
+            const downloadSection = document.createElement('div');
+            downloadSection.className = 'tip-box';
+            downloadSection.innerHTML = `
+                <h3>💾 Save Your Summary</h3>
+                <p>Choose how you'd like to save your preparation summary:</p>
+                <div style="margin: 15px 0;">
+                    <button class="btn" onclick="downloadAsPDF()">📄 Download as PDF</button>
+                    <button class="btn" onclick="downloadAsHTML()">🌐 Download as HTML</button>
+                    <button class="btn" onclick="copyToClipboard()">📋 Copy to Clipboard</button>
+                </div>
+                <p style="font-size: 0.9em; margin-top: 15px;">
+                    <strong>For Teachers:</strong> <button class="btn" onclick="downloadDataCSV()" style="padding: 5px 15px; font-size: 14px;">📊 Download Data (CSV)</button>
+                </p>
+            `;
+            document.getElementById('summaryDisplay').appendChild(downloadSection);
+        }
+
+        function downloadAsPDF() {
+            // Create a clean version for PDF
+            const printContent = createPrintVersion();
+            const printWindow = window.open('', '', 'height=600,width=800');
+            printWindow.document.write(`
+                <html>
+                <head>
+                    <title>${sectionData.studentName || 'Student'} - Papatoetoe High Preparation</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+                        h1, h2, h3 { color: #333; }
+                        .header { text-align: center; margin-bottom: 30px; }
+                        .section { margin: 20px 0; }
+                        strong { color: #555; }
+                        hr { margin: 20px 0; border: 1px solid #ddd; }
+                    </style>
+                </head>
+                <body>${printContent}</body>
+                </html>
+            `);
+            printWindow.document.close();
+            printWindow.focus();
+            setTimeout(() => {
+                printWindow.print();
+                printWindow.close();
+            }, 250);
+        }
+
+        function downloadAsHTML() {
+            const htmlContent = createFullHTMLVersion();
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${sectionData.studentName || 'Student'}_Papatoetoe_Preparation.html`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function copyToClipboard() {
+            const textContent = createTextVersion();
+            navigator.clipboard.writeText(textContent).then(() => {
+                alert('✅ Summary copied to clipboard! You can now paste it into a document or email.');
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = textContent;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('✅ Summary copied to clipboard!');
+            });
+        }
+
+        function downloadDataCSV() {
+            const csvData = createCSVData();
+            const blob = new Blob([csvData], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${sectionData.studentName || 'Student'}_Data_${new Date().toISOString().split('T')[0]}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function createPrintVersion() {
+            return `
+                <div class="header">
+                    <h1>🎓 ${sectionData.studentName || 'Student'}'s Preparation Summary</h1>
+                    <h2>Papatoetoe High School - First Day Preparation</h2>
+                    <p>Completed: ${new Date().toLocaleDateString()}</p>
+                </div>
+                
+                <div class="section">
+                    <h3>📋 Student Information</h3>
+                    <p><strong>Name:</strong> ${sectionData.studentName || 'Not provided'}</p>
+                    <p><strong>Year Level 2026:</strong> Year ${sectionData.yearLevel || 'Not specified'}</p>
+                    <p><strong>Initial Feeling:</strong> ${sectionData.excitement || 'Not specified'}</p>
+                </div>
+                
+                <div class="section">
+                    <h3>📈 Success Planning</h3>
+                    <p><strong>Definition of Success:</strong></p>
+                    <p>${sectionData.successDefinition || 'Not provided'}</p>
+                    <p><strong>Organization Strategy:</strong></p>
+                    <p>${sectionData.organizationPlan || 'Not provided'}</p>
+                </div>
+                
+                <div class="section">
+                    <h3>⏰ Time & Attendance Management</h3>
+                    <p><strong>Attendance Goal:</strong> ${sectionData.attendanceGoal || 'Not specified'}%</p>
+                    <p><strong>Wake Up Time:</strong> ${sectionData.wakeUpTime || 'Not specified'}</p>
+                    <p><strong>Travel Method:</strong> ${sectionData.travelTime || 'Not specified'}</p>
+                </div>
+                
+                <div class="section">
+                    <h3>🎯 Academic Goals</h3>
+                    <p><strong>Literacy Goal:</strong> ${sectionData.literacyGoal || 'Not specified'}</p>
+                    <p><strong>Numeracy Goal:</strong> ${sectionData.numeracyGoal || 'Not specified'}</p>
+                    <p><strong>NCEA Goal:</strong> ${sectionData.nceaGoal || 'Not specified'}</p>
+                </div>
+                
+                <div class="section">
+                    <h3>📚 Study Approach</h3>
+                    <p><strong>Note-taking Method:</strong> ${sectionData.noteMethod || 'Not specified'}</p>
+                    <p><strong>Best Study Time:</strong> ${sectionData.studyTime || 'Not specified'}</p>
+                    <p><strong>Weekly Study Hours:</strong> ${sectionData.weeklyStudyPlan || 'Not specified'}</p>
+                </div>
+                
+                <div class="section">
+                    <h3>🤖 AI Use Commitment</h3>
+                    <p><strong>AI Learning Goals:</strong></p>
+                    <p>${sectionData.aiLearningGoals || 'Not provided'}</p>
+                    <p><strong>Integrity Pledge:</strong></p>
+                    <p>${sectionData.aiIntegrityPledge || 'Not provided'}</p>
+                </div>
+                
+                <div class="section">
+                    <h3>🎉 Final Thoughts</h3>
+                    <p><strong>Confidence Level:</strong> ${sectionData.finalConfidence || 'Not specified'}</p>
+                    <p><strong>Most Excited About:</strong></p>
+                    <p>${sectionData.finalThoughts || 'Not provided'}</p>
+                    <p><strong>Next Week's Actions:</strong></p>
+                    <p>${sectionData.nextSteps || 'Not provided'}</p>
+                </div>
+                
+                <hr>
+                <div style="text-align: center;">
+                    <h3>🚀 Ready for Success at Papatoetoe High School! 🚀</h3>
+                </div>
+            `;
+        }
+
+        function createFullHTMLVersion() {
+            return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${sectionData.studentName || 'Student'} - Papatoetoe High Preparation</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; margin: 40px; line-height: 1.6; background: #f5f5f5; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        h1, h2, h3 { color: #333; }
+        .header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #667eea; padding-bottom: 20px; }
+        .section { margin: 25px 0; padding: 20px; background: #f8f9ff; border-radius: 8px; border-left: 4px solid #667eea; }
+        strong { color: #555; }
+        .footer { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 2px solid #667eea; color: #667eea; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        ${createPrintVersion()}
+    </div>
+</body>
+</html>`;
+        }
+
+        function createTextVersion() {
+            return `${sectionData.studentName || 'Student'}'s Preparation Summary
+Papatoetoe High School - First Day Preparation
+Completed: ${new Date().toLocaleDateString()}
+
+=== STUDENT INFORMATION ===
+Name: ${sectionData.studentName || 'Not provided'}
+Year Level 2026: Year ${sectionData.yearLevel || 'Not specified'}
+Initial Feeling: ${sectionData.excitement || 'Not specified'}
+
+=== SUCCESS PLANNING ===
+Definition of Success:
+${sectionData.successDefinition || 'Not provided'}
+
+Organization Strategy:
+${sectionData.organizationPlan || 'Not provided'}
+
+=== TIME & ATTENDANCE MANAGEMENT ===
+Attendance Goal: ${sectionData.attendanceGoal || 'Not specified'}%
+Wake Up Time: ${sectionData.wakeUpTime || 'Not specified'}
+Travel Method: ${sectionData.travelTime || 'Not specified'}
+
+=== ACADEMIC GOALS ===
+Literacy Goal: ${sectionData.literacyGoal || 'Not specified'}
+Numeracy Goal: ${sectionData.numeracyGoal || 'Not specified'}
+NCEA Goal: ${sectionData.nceaGoal || 'Not specified'}
+
+=== STUDY APPROACH ===
+Note-taking Method: ${sectionData.noteMethod || 'Not specified'}
+Best Study Time: ${sectionData.studyTime || 'Not specified'}
+Weekly Study Hours: ${sectionData.weeklyStudyPlan || 'Not specified'}
+
+=== AI USE COMMITMENT ===
+AI Learning Goals:
+${sectionData.aiLearningGoals || 'Not provided'}
+
+Integrity Pledge:
+${sectionData.aiIntegrityPledge || 'Not provided'}
+
+=== FINAL THOUGHTS ===
+Confidence Level: ${sectionData.finalConfidence || 'Not specified'}
+
+Most Excited About:
+${sectionData.finalThoughts || 'Not provided'}
+
+Next Week's Actions:
+${sectionData.nextSteps || 'Not provided'}
+
+🚀 Ready for Success at Papatoetoe High School! 🚀`;
+        }
+
+        function createCSVData() {
+            const headers = [
+                'Student Name', 'Year Level', 'Initial Feeling', 'Success Definition', 'Organization Plan',
+                'Attendance Goal', 'Wake Up Time', 'Travel Method', 'Literacy Goal', 'Numeracy Goal',
+                'NCEA Goal', 'Note Method', 'Study Time', 'Weekly Study Hours', 'AI Learning Goals',
+                'AI Integrity Pledge', 'Final Confidence', 'Most Excited About', 'Next Steps', 'Completion Date'
+            ];
+            
+            const values = [
+                sectionData.studentName || '',
+                sectionData.yearLevel || '',
+                sectionData.excitement || '',
+                sectionData.successDefinition || '',
+                sectionData.organizationPlan || '',
+                sectionData.attendanceGoal || '',
+                sectionData.wakeUpTime || '',
+                sectionData.travelTime || '',
+                sectionData.literacyGoal || '',
+                sectionData.numeracyGoal || '',
+                sectionData.nceaGoal || '',
+                sectionData.noteMethod || '',
+                sectionData.studyTime || '',
+                sectionData.weeklyStudyPlan || '',
+                sectionData.aiLearningGoals || '',
+                sectionData.aiIntegrityPledge || '',
+                sectionData.finalConfidence || '',
+                sectionData.finalThoughts || '',
+                sectionData.nextSteps || '',
+                new Date().toISOString()
+            ];
+            
+            // Escape CSV values
+            const escapedValues = values.map(value => {
+                if (typeof value === 'string' && (value.includes(',') || value.includes('"') || value.includes('\n'))) {
+                    return '"' + value.replace(/"/g, '""') + '"';
+                }
+                return value;
+            });
+            
+            return headers.join(',') + '\n' + escapedValues.join(',');
+        }
+
+        function createDataExport() {
+            // Log the data for easy copying
+            console.log('Student Data Export:', JSON.stringify(sectionData, null, 2));
+        }
+
+        // Initialize
+        updateProgress();
+
+        // Auto-save functionality
+        document.addEventListener('input', function(e) {
+            if (e.target.matches('input, textarea, select')) {
+                // Auto-save after 2 seconds of no typing
+                clearTimeout(window.autoSaveTimer);
+                window.autoSaveTimer = setTimeout(() => {
+                    saveCurrentSectionData();
+                }, 2000);
+            }
+        });
+
+        // Add some interactivity for engagement
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add smooth scrolling to top when changing sections
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                        if (mutation.target.classList.contains('active')) {
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
+
+            document.querySelectorAll('.section').forEach(section => {
+                observer.observe(section, { attributes: true });
+            });
+        });
+    </script>
+</body>
+</html>
