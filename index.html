@@ -262,6 +262,29 @@
         .completion-summary.show {
             display: block;
         }
+
+        .email-status {
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .email-success {
+            background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+            color: white;
+        }
+
+        .email-error {
+            background: linear-gradient(135deg, #fab1a0 0%, #fd79a8 100%);
+            color: white;
+        }
+
+        .email-sending {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            color: #2d3436;
+        }
         
         @media (max-width: 768px) {
             .container {
@@ -316,6 +339,12 @@
                     <input type="text" id="studentName" placeholder="Enter your full name">
                 </div>
                 <div class="input-group">
+                    <label for="formClass">What form class are you in for 2026?</label>
+                    <select id="formClass">
+                        <option value="">Select your form class</option>
+                    </select>
+                </div>
+                <div class="input-group">
                     <label for="yearLevel">What year level will you be in 2026?</label>
                     <select id="yearLevel">
                         <option value="">Select your year level</option>
@@ -334,13 +363,6 @@
                         <option value="nervous">A bit nervous 😅</option>
                         <option value="mixed">Mixed feelings 🤔</option>
                         <option value="confident">Confident and ready 💪</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label for="formClass">What is your Form Class?</label>
-                    <select id="formClass">
-                        <option value="">Select your Form Class</option>
-                        <!-- Will be populated from Apps Script -->
                     </select>
                 </div>
             </div>
@@ -668,7 +690,7 @@
             <h2>📖 Study Skills & Note-Taking Mastery</h2>
             <p>Effective study skills and note-taking are essential for academic success. Let's explore proven techniques that will help you learn more effectively.</p>
 
-            <h3>✍️ Note-Taking Methods</h3>
+            <h3>✏️ Note-Taking Methods</h3>
             
             <div class="goal-card">
                 <h4>📝 Cornell Note-Taking System</h4>
@@ -958,6 +980,7 @@
                     </button>
                 </div>
 
+                <div id="emailStatus" class="email-status" style="display: none;"></div>
                 <div id="summaryDisplay" style="display: none; background: white; padding: 20px; border-radius: 10px; margin: 20px 0; color: #333;"></div>
             </div>
         </div>
@@ -967,6 +990,34 @@
         let currentSection = 0;
         const totalSections = 8;
         let sectionData = {};
+
+        // Form class data - you'll replace this with your actual data
+        const formClassData = {
+            'K01': 'carowse@papatoetoehigh.school.nz',
+            'K02': 'wenwu@papatoetoehigh.school.nz',
+            'K03': 'ViTitiuti@Papatoetoehigh.school.nz',
+            'K04': 'realobaidi@papatoetoehigh.school.nz',
+            'K05': 'zagulnaaz@papatoetoehigh.school.nz',
+            'K06': 'yoKrishna@papatoetoehigh.school.nz',
+            'K07': 'poprasad@papatoetoehigh.school.nz',
+            'K08': 'stchapman@papatoetoehigh.school.nz',
+            'K09': 'makumar@papatoetoehigh.school.nz'
+            // Add the rest of your form classes here
+        };
+
+        // Replace this with your actual Google Apps Script URL
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw96pilJf3c8c0e0KgiEBS9K_WZcJU_k69YbHaPwnXCdlPSRmuNT3tjv15l-OyPYgg/exec';
+
+        // Initialize form class dropdown
+        document.addEventListener('DOMContentLoaded', function() {
+            const formClassSelect = document.getElementById('formClass');
+            Object.keys(formClassData).sort().forEach(formClass => {
+                const option = document.createElement('option');
+                option.value = formClass;
+                option.textContent = formClass;
+                formClassSelect.appendChild(option);
+            });
+        });
 
         function showSection(index) {
             // Save current section data
@@ -1026,14 +1077,14 @@
             });
         }
 
-        function generateSummary() {
+        async function generateSummary() {
             // Save final section data
             saveCurrentSectionData();
 
             const summary = `
                 <h3>🎓 ${sectionData.studentName || 'Student'}'s Preparation Summary</h3>
+                <p><strong>Form Class:</strong> ${sectionData.formClass || 'Not specified'}</p>
                 <p><strong>Year Level:</strong> Year ${sectionData.yearLevel || 'Not specified'}</p>
-                                <p><strong>Form Class:</strong> ${sectionData.formClass || 'Not specified'}</p>
                 <p><strong>Initial Feeling:</strong> ${sectionData.excitement || 'Not specified'}</p>
                 
                 <h4>📈 Success Plan</h4>
@@ -1072,44 +1123,60 @@
             document.getElementById('summaryDisplay').innerHTML = summary;
             document.getElementById('summaryDisplay').style.display = 'block';
 
+            // Send email to form teacher if form class is selected
+            if (sectionData.formClass && formClassData[sectionData.formClass]) {
+                await sendEmailToTeacher();
+            }
+
             // Create download buttons for the summary
             createDownloadOptions();
-            
-            // Also create a data export for Google Sheets if needed
-            createDataExport();
+        }
 
-// Send the summary to the student's Form Teacher via Apps Script
-if (typeof google !== 'undefined' && google.script && google.script.run) {
-    const payload = {
-        studentName: sectionData.studentName || '',
-        formClass: sectionData.formClass || '',
-        yearLevel: sectionData.yearLevel || '',
-        summaryHtml: document.getElementById('summaryDisplay').innerHTML
-    };
-    if (!payload.formClass) {
-        alert('Please select your Form Class before generating your summary.');
-        return;
-    }
-    google.script.run
-      .withSuccessHandler(function(res) {
-          const msg = res && res.ok
-            ? `✅ A copy of your summary has been emailed to your Form Teacher (${res.teacherEmail}).`
-            : '✅ Your summary has been sent.';
-          const ok = document.createElement('div');
-          ok.className = 'tip-box';
-          ok.innerHTML = `<h3>Summary sent to your teacher</h3><p>${msg}</p>`;
-          document.getElementById('summaryDisplay').appendChild(ok);
-      })
-      .withFailureHandler(function(err) {
-          console.error(err);
-          const warn = document.createElement('div');
-          warn.className = 'warning-box';
-          warn.innerHTML = `<h3>Couldn’t email your teacher</h3><p>Please download your summary and let your teacher know. Error: ${err && err.message ? err.message : err}</p>`;
-          document.getElementById('summaryDisplay').appendChild(warn);
-      })
-      .sendSummaryToTeacher(payload);
-}
-}
+        async function sendEmailToTeacher() {
+            const emailStatus = document.getElementById('emailStatus');
+            const teacherEmail = formClassData[sectionData.formClass];
+            
+            if (!teacherEmail) {
+                emailStatus.className = 'email-status email-error';
+                emailStatus.textContent = 'Error: Could not find teacher email for form class ' + sectionData.formClass;
+                emailStatus.style.display = 'block';
+                return;
+            }
+
+            // Show sending status
+            emailStatus.className = 'email-status email-sending';
+            emailStatus.textContent = 'Sending summary to your form teacher...';
+            emailStatus.style.display = 'block';
+
+            try {
+                const emailData = {
+                    teacherEmail: teacherEmail,
+                    studentName: sectionData.studentName || 'Student',
+                    formClass: sectionData.formClass,
+                    summaryData: sectionData,
+                    completionDate: new Date().toISOString()
+                };
+
+                const response = await fetch(APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(emailData)
+                });
+
+                if (response.ok) {
+                    emailStatus.className = 'email-status email-success';
+                    emailStatus.textContent = '✅ Summary successfully sent to your form teacher!';
+                } else {
+                    throw new Error('Failed to send email');
+                }
+            } catch (error) {
+                console.error('Error sending email:', error);
+                emailStatus.className = 'email-status email-error';
+                emailStatus.textContent = '❌ Could not send email to teacher. Please save your summary and share it manually.';
+            }
+        }
 
         function createDownloadOptions() {
             const downloadSection = document.createElement('div');
@@ -1122,15 +1189,11 @@ if (typeof google !== 'undefined' && google.script && google.script.run) {
                     <button class="btn" onclick="downloadAsHTML()">🌐 Download as HTML</button>
                     <button class="btn" onclick="copyToClipboard()">📋 Copy to Clipboard</button>
                 </div>
-                <p style="font-size: 0.9em; margin-top: 15px;">
-                    <strong>For Teachers:</strong> <button class="btn" onclick="downloadDataCSV()" style="padding: 5px 15px; font-size: 14px;">📊 Download Data (CSV)</button>
-                </p>
             `;
             document.getElementById('summaryDisplay').appendChild(downloadSection);
         }
 
         function downloadAsPDF() {
-            // Create a clean version for PDF
             const printContent = createPrintVersion();
             const printWindow = window.open('', '', 'height=600,width=800');
             printWindow.document.write(`
@@ -1175,7 +1238,6 @@ if (typeof google !== 'undefined' && google.script && google.script.run) {
             navigator.clipboard.writeText(textContent).then(() => {
                 alert('✅ Summary copied to clipboard! You can now paste it into a document or email.');
             }).catch(() => {
-                // Fallback for older browsers
                 const textArea = document.createElement('textarea');
                 textArea.value = textContent;
                 document.body.appendChild(textArea);
@@ -1184,19 +1246,6 @@ if (typeof google !== 'undefined' && google.script && google.script.run) {
                 document.body.removeChild(textArea);
                 alert('✅ Summary copied to clipboard!');
             });
-        }
-
-        function downloadDataCSV() {
-            const csvData = createCSVData();
-            const blob = new Blob([csvData], { type: 'text/csv' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `${sectionData.studentName || 'Student'}_Data_${new Date().toISOString().split('T')[0]}.csv`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
         }
 
         function createPrintVersion() {
@@ -1210,6 +1259,7 @@ if (typeof google !== 'undefined' && google.script && google.script.run) {
                 <div class="section">
                     <h3>📋 Student Information</h3>
                     <p><strong>Name:</strong> ${sectionData.studentName || 'Not provided'}</p>
+                    <p><strong>Form Class:</strong> ${sectionData.formClass || 'Not specified'}</p>
                     <p><strong>Year Level 2026:</strong> Year ${sectionData.yearLevel || 'Not specified'}</p>
                     <p><strong>Initial Feeling:</strong> ${sectionData.excitement || 'Not specified'}</p>
                 </div>
@@ -1299,6 +1349,7 @@ Completed: ${new Date().toLocaleDateString()}
 
 === STUDENT INFORMATION ===
 Name: ${sectionData.studentName || 'Not provided'}
+Form Class: ${sectionData.formClass || 'Not specified'}
 Year Level 2026: Year ${sectionData.yearLevel || 'Not specified'}
 Initial Feeling: ${sectionData.excitement || 'Not specified'}
 
@@ -1343,60 +1394,12 @@ ${sectionData.nextSteps || 'Not provided'}
 🚀 Ready for Success at Papatoetoe High School! 🚀`;
         }
 
-        function createCSVData() {
-            const headers = [
-                'Student Name', 'Year Level', 'Initial Feeling', 'Success Definition', 'Organization Plan',
-                'Attendance Goal', 'Wake Up Time', 'Travel Method', 'Literacy Goal', 'Numeracy Goal',
-                'NCEA Goal', 'Note Method', 'Study Time', 'Weekly Study Hours', 'AI Learning Goals',
-                'AI Integrity Pledge', 'Final Confidence', 'Most Excited About', 'Next Steps', 'Completion Date'
-            ];
-            
-            const values = [
-                sectionData.studentName || '',
-                sectionData.yearLevel || '',
-                sectionData.excitement || '',
-                sectionData.successDefinition || '',
-                sectionData.organizationPlan || '',
-                sectionData.attendanceGoal || '',
-                sectionData.wakeUpTime || '',
-                sectionData.travelTime || '',
-                sectionData.literacyGoal || '',
-                sectionData.numeracyGoal || '',
-                sectionData.nceaGoal || '',
-                sectionData.noteMethod || '',
-                sectionData.studyTime || '',
-                sectionData.weeklyStudyPlan || '',
-                sectionData.aiLearningGoals || '',
-                sectionData.aiIntegrityPledge || '',
-                sectionData.finalConfidence || '',
-                sectionData.finalThoughts || '',
-                sectionData.nextSteps || '',
-                new Date().toISOString()
-            ];
-            
-            // Escape CSV values
-            const escapedValues = values.map(value => {
-                if (typeof value === 'string' && (value.includes(',') || value.includes('"') || value.includes('\n'))) {
-                    return '"' + value.replace(/"/g, '""') + '"';
-                }
-                return value;
-            });
-            
-            return headers.join(',') + '\n' + escapedValues.join(',');
-        }
-
-        function createDataExport() {
-            // Log the data for easy copying
-            console.log('Student Data Export:', JSON.stringify(sectionData, null, 2));
-        }
-
         // Initialize
         updateProgress();
 
         // Auto-save functionality
         document.addEventListener('input', function(e) {
             if (e.target.matches('input, textarea, select')) {
-                // Auto-save after 2 seconds of no typing
                 clearTimeout(window.autoSaveTimer);
                 window.autoSaveTimer = setTimeout(() => {
                     saveCurrentSectionData();
@@ -1404,9 +1407,8 @@ ${sectionData.nextSteps || 'Not provided'}
             }
         });
 
-        // Add some interactivity for engagement
+        // Add smooth scrolling when changing sections
         document.addEventListener('DOMContentLoaded', function() {
-            // Add smooth scrolling to top when changing sections
             const observer = new MutationObserver(function(mutations) {
                 mutations.forEach(function(mutation) {
                     if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
@@ -1420,25 +1422,6 @@ ${sectionData.nextSteps || 'Not provided'}
             document.querySelectorAll('.section').forEach(section => {
                 observer.observe(section, { attributes: true });
             });
-
-            // Populate Form Class dropdown from Apps Script (if running as a Web App)
-            if (typeof google !== 'undefined' && google.script && google.script.run) {
-                google.script.run
-                  .withSuccessHandler(function(classes) {
-                      const sel = document.getElementById('formClass');
-                      if (!sel) return;
-                      classes.forEach(function(c) {
-                          const opt = document.createElement('option');
-                          opt.value = c;
-                          opt.textContent = c;
-                          sel.appendChild(opt);
-                      });
-                  })
-                  .withFailureHandler(function(err) {
-                      console.error('Failed to load form classes:', err);
-                  })
-                  .getFormClasses();
-            }
         });
     </script>
 </body>
