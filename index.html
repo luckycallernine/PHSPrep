@@ -316,7 +316,7 @@
                     <input type="text" id="studentName" placeholder="Enter your full name">
                 </div>
                 <div class="input-group">
-                    <label for="yearLevel">What year level will you be in 2025?</label>
+                    <label for="yearLevel">What year level will you be in 2026?</label>
                     <select id="yearLevel">
                         <option value="">Select your year level</option>
                         <option value="9">Year 9</option>
@@ -334,6 +334,13 @@
                         <option value="nervous">A bit nervous 😅</option>
                         <option value="mixed">Mixed feelings 🤔</option>
                         <option value="confident">Confident and ready 💪</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="formClass">What is your Form Class?</label>
+                    <select id="formClass">
+                        <option value="">Select your Form Class</option>
+                        <!-- Will be populated from Apps Script -->
                     </select>
                 </div>
             </div>
@@ -1026,6 +1033,7 @@
             const summary = `
                 <h3>🎓 ${sectionData.studentName || 'Student'}'s Preparation Summary</h3>
                 <p><strong>Year Level:</strong> Year ${sectionData.yearLevel || 'Not specified'}</p>
+                                <p><strong>Form Class:</strong> ${sectionData.formClass || 'Not specified'}</p>
                 <p><strong>Initial Feeling:</strong> ${sectionData.excitement || 'Not specified'}</p>
                 
                 <h4>📈 Success Plan</h4>
@@ -1069,7 +1077,39 @@
             
             // Also create a data export for Google Sheets if needed
             createDataExport();
-        }
+
+// Send the summary to the student's Form Teacher via Apps Script
+if (typeof google !== 'undefined' && google.script && google.script.run) {
+    const payload = {
+        studentName: sectionData.studentName || '',
+        formClass: sectionData.formClass || '',
+        yearLevel: sectionData.yearLevel || '',
+        summaryHtml: document.getElementById('summaryDisplay').innerHTML
+    };
+    if (!payload.formClass) {
+        alert('Please select your Form Class before generating your summary.');
+        return;
+    }
+    google.script.run
+      .withSuccessHandler(function(res) {
+          const msg = res && res.ok
+            ? `✅ A copy of your summary has been emailed to your Form Teacher (${res.teacherEmail}).`
+            : '✅ Your summary has been sent.';
+          const ok = document.createElement('div');
+          ok.className = 'tip-box';
+          ok.innerHTML = `<h3>Summary sent to your teacher</h3><p>${msg}</p>`;
+          document.getElementById('summaryDisplay').appendChild(ok);
+      })
+      .withFailureHandler(function(err) {
+          console.error(err);
+          const warn = document.createElement('div');
+          warn.className = 'warning-box';
+          warn.innerHTML = `<h3>Couldn’t email your teacher</h3><p>Please download your summary and let your teacher know. Error: ${err && err.message ? err.message : err}</p>`;
+          document.getElementById('summaryDisplay').appendChild(warn);
+      })
+      .sendSummaryToTeacher(payload);
+}
+}
 
         function createDownloadOptions() {
             const downloadSection = document.createElement('div');
@@ -1380,6 +1420,25 @@ ${sectionData.nextSteps || 'Not provided'}
             document.querySelectorAll('.section').forEach(section => {
                 observer.observe(section, { attributes: true });
             });
+
+            // Populate Form Class dropdown from Apps Script (if running as a Web App)
+            if (typeof google !== 'undefined' && google.script && google.script.run) {
+                google.script.run
+                  .withSuccessHandler(function(classes) {
+                      const sel = document.getElementById('formClass');
+                      if (!sel) return;
+                      classes.forEach(function(c) {
+                          const opt = document.createElement('option');
+                          opt.value = c;
+                          opt.textContent = c;
+                          sel.appendChild(opt);
+                      });
+                  })
+                  .withFailureHandler(function(err) {
+                      console.error('Failed to load form classes:', err);
+                  })
+                  .getFormClasses();
+            }
         });
     </script>
 </body>
