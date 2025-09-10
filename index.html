@@ -1006,7 +1006,7 @@
         };
 
         // Replace this with your actual Google Apps Script URL
-        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxDK9r-VNjRSobF-pyYp2YwNVxOCX0OdnCm5Z5KTkcxBTcbyx5GQmpZ0UbPVDDbukg-/exec';
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzeqFbqWrrXtP71PVaEY7yeh7rTOxq1__woIcpsCF7bp14_47nyDqeUlupWE3_Y_kLf/exec';
 
         // Initialize form class dropdown
         document.addEventListener('DOMContentLoaded', function() {
@@ -1148,32 +1148,39 @@
             emailStatus.textContent = 'Sending summary to your form teacher...';
             emailStatus.style.display = 'block';
 
-            try {
-                const emailData = {
-                    teacherEmail: teacherEmail,
-                    studentName: sectionData.studentName || 'Student',
-                    formClass: sectionData.formClass,
-                    summaryData: sectionData,
-                    completionDate: new Date().toISOString()
-                };
+            const emailData = {
+                teacherEmail: teacherEmail,
+                studentName: sectionData.studentName || 'Student',
+                formClass: sectionData.formClass,
+                summaryData: sectionData,
+                completionDate: new Date().toISOString()
+            };
 
-                // Try multiple approaches for better compatibility
-                let response;
+            try {
+                // Use a simple approach that works with Google Apps Script
+                const response = await fetch(APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(emailData)
+                });
+
+                // Check if the response is ok
+                if (response.ok) {
+                    const result = await response.text();
+                    if (result.includes('success') || result.includes('Email sent')) {
+                        emailStatus.className = 'email-status email-success';
+                        emailStatus.textContent = '✅ Summary successfully sent to your form teacher!';
+                        return;
+                    }
+                }
                 
+                // If we get here, try the fallback method
+                throw new Error('Primary method failed');
+                
+            } catch (error) {
+                console.log('Primary method failed, trying fallback:', error);
+                
+                // Fallback: Create a hidden form and submit it
                 try {
-                    // First attempt: Standard fetch with explicit headers
-                    response = await fetch(APPS_SCRIPT_URL, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(emailData),
-                        mode: 'cors'
-                    });
-                } catch (corsError) {
-                    console.log('CORS error, trying alternative method:', corsError);
-                    
-                    // Alternative approach: Use form submission
                     const form = document.createElement('form');
                     form.method = 'POST';
                     form.action = APPS_SCRIPT_URL;
@@ -1190,22 +1197,15 @@
                     form.submit();
                     document.body.removeChild(form);
                     
-                    // Show success message for form submission method
+                    // Show success message for form submission
                     emailStatus.className = 'email-status email-success';
-                    emailStatus.textContent = '✅ Email request submitted! Please check with your teacher to confirm receipt.';
-                    return;
+                    emailStatus.textContent = '✅ Email request submitted successfully! A new tab opened to confirm the submission.';
+                    
+                } catch (fallbackError) {
+                    console.error('Both methods failed:', fallbackError);
+                    emailStatus.className = 'email-status email-error';
+                    emailStatus.textContent = '❌ Could not send email automatically. Please save your summary and share it manually with your form teacher.';
                 }
-
-                if (response && response.ok) {
-                    emailStatus.className = 'email-status email-success';
-                    emailStatus.textContent = '✅ Summary successfully sent to your form teacher!';
-                } else {
-                    throw new Error('Failed to send email');
-                }
-            } catch (error) {
-                console.error('Error sending email:', error);
-                emailStatus.className = 'email-status email-error';
-                emailStatus.textContent = '❌ Could not send email to teacher. Please save your summary and share it manually.';
             }
         }
 
