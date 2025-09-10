@@ -1006,7 +1006,7 @@
         };
 
         // Replace this with your actual Google Apps Script URL
-        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwIMCsEkBbIowERJtmecWE8_KvlnOim4OqZ5rVaVJuxpkKK5upALn3kCe9XPFMw1hul/exec';
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxDK9r-VNjRSobF-pyYp2YwNVxOCX0OdnCm5Z5KTkcxBTcbyx5GQmpZ0UbPVDDbukg-/exec';
 
         // Initialize form class dropdown
         document.addEventListener('DOMContentLoaded', function() {
@@ -1157,15 +1157,46 @@
                     completionDate: new Date().toISOString()
                 };
 
-                const response = await fetch(APPS_SCRIPT_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(emailData)
-                });
+                // Try multiple approaches for better compatibility
+                let response;
+                
+                try {
+                    // First attempt: Standard fetch with explicit headers
+                    response = await fetch(APPS_SCRIPT_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(emailData),
+                        mode: 'cors'
+                    });
+                } catch (corsError) {
+                    console.log('CORS error, trying alternative method:', corsError);
+                    
+                    // Alternative approach: Use form submission
+                    const form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = APPS_SCRIPT_URL;
+                    form.target = '_blank';
+                    form.style.display = 'none';
+                    
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = 'data';
+                    input.value = JSON.stringify(emailData);
+                    form.appendChild(input);
+                    
+                    document.body.appendChild(form);
+                    form.submit();
+                    document.body.removeChild(form);
+                    
+                    // Show success message for form submission method
+                    emailStatus.className = 'email-status email-success';
+                    emailStatus.textContent = '✅ Email request submitted! Please check with your teacher to confirm receipt.';
+                    return;
+                }
 
-                if (response.ok) {
+                if (response && response.ok) {
                     emailStatus.className = 'email-status email-success';
                     emailStatus.textContent = '✅ Summary successfully sent to your form teacher!';
                 } else {
